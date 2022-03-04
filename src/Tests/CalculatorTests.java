@@ -28,5 +28,21 @@ class CalculatorTests {
 		
 		
 	}
+	
+	
+	@Test
+	void calculateInfix() {
+		
+		
+		try {
+			assertEquals(27,calculator.evaluateInfix("(1+2)*9 "));
+			assertEquals(30,calculator.evaluateInfix("(1+2+3)*4+6"));
+		
+		} catch (IllegalAccessException e) {
+			fail(e);
+		}
+		
+		
+	}
 
 }

@@ -1,6 +1,5 @@
 package Files;
 
-import java.util.ArrayList;
 
 public class Calculator {
 
@@ -97,6 +96,93 @@ public class Calculator {
 		}
 
 		return list.asString().replace("", " ").trim();
+	}
+	
+	/**
+	 * Metodo que se encarga de efectuar la operacion especificada en una expresion
+	 * postfix.
+	 * 
+	 * Pre: Los elementos de la expresion deben de estar separados por un espacio en blanco. 
+	 * 		Solo se admiten las operaciones + - / *.
+	 * 		Para realizar una operacion se necesitan al menos dos operandos.
+	 * 		La calculadora no admite la division por cero.
+	 * Post: Se devuelve el resultado como valor entero.
+	 * 
+	 * @param expresion String. Expresion en formato postfix. 
+	 * @return int. Resultado de la operacion.
+	 */
+	public int evaluatePostfix(String expresion) throws ArithmeticException {
+
+		String[] values = expresion.split(" ");
+		Stack_ArrayList<Integer> stack = new Stack_ArrayList<>();
+		// Stack_Kiesling<Integer> stack = new Stack_Kiesling<Integer>();
+		int result = 0;
+
+		for (String value : values) {
+
+			if (value.trim() != "") {
+
+				Integer digit = parseDigit(value);
+
+				// caracter es digito
+				if (digit != null) {
+					stack.push(digit);
+				}
+				// caracter es Signo
+				else {
+
+					final String sign = value.trim();
+					final String validSigns = "+-*/";
+
+					// validar signo
+					if (!validSigns.contains(value))
+						throw new IllegalArgumentException(
+								"La expresion ingresada no se encuentra en un formato valido.");
+
+					// validar cantidad de operandos
+					if (stack.count() < 2)
+						throw new IllegalArgumentException("Cantidad de operandos insuficiente.");
+
+					int operatorB = stack.pull();
+					int operatorA = stack.pull();
+
+					switch (sign) {
+
+					case "+":
+						result = operatorA + operatorB;
+						break;
+					case "-":
+						result = operatorA - operatorB;
+						break;
+					case "*":
+						result = operatorA * operatorB;
+						break;
+					case "/":
+						result = operatorA / operatorB;
+						break;
+
+					}
+
+					// add result
+					stack.push(result);
+
+				}
+			}
+		}
+
+		return result;
+	}
+	
+	/**
+	 * Se encarga de realizar la operacion especificada en formato infix.
+	 * @param expression Infix.
+	 * @return Int.
+	 * @throws IllegalAccessException 
+	 */
+	public int evaluateInfix(String expression) throws IllegalAccessException,ArithmeticException {
+		
+		String postfix = infixToPostfixConverter(expression);
+		return evaluatePostfix(postfix);
 	}
 
 	/**
