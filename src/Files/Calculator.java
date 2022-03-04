@@ -96,7 +96,7 @@ public class Calculator {
 			list.addLast(stack.pull());
 		}
 
-		return list.asString();
+		return list.asString().replace("", " ").trim();
 	}
 
 	/**
