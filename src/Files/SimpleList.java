@@ -43,4 +43,17 @@ public class SimpleList<T> implements IList<T> {
 		return firstElement == null;
 	}
 
+	@Override
+	public String asString() {
+		Node next = firstElement;
+		String result = "";
+		while(next != null) {
+			result += next.getValue() != null? next.getValue().toString() : "";
+			next = next.getPointer();
+		}
+		return result;
+	}
+	
+	
+
 }

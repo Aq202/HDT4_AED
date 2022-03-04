@@ -26,10 +26,13 @@ class ListTests {
 		
 		simpleList.addFirst(1);
 		assertEquals(1, simpleList.getFirst());
-		
+
 		simpleList.addLast(3);
 		assertEquals(3, simpleList.getLast());
+		assertEquals("123", simpleList.asString());
 		assertEquals(false, simpleList.isEmpty());
+		
+		
 	}
 
 }

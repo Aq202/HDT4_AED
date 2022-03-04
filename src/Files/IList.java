@@ -7,5 +7,6 @@ public interface IList<T> {
 	T getFirst();
 	T getLast();
 	boolean isEmpty();
+	String asString();
 
 }
