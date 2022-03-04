@@ -61,10 +61,11 @@ public class Main {
 				int lineCount = 1;
 				for (String row : fileContent) {
 					try {
+						System.out.println("Linea numero: "+lineCount);
 						String posfixExpression = calc.infixToPostfixConverter(row);
 						System.out.println("Operacion en formato infix: " + row);
 						System.out.println("Operacion en formato posfix: " + posfixExpression);
-						System.out.println("Resultado: " +  "\n");
+						System.out.println("Resultado: " + calc.evaluatePostfix(posfixExpression) + "\n");
 					}catch(IllegalAccessException e) {
 						System.out.println("La expresion en la linea "+ lineCount + " no es valida.");
 					}
