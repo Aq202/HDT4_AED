@@ -10,7 +10,7 @@ public class StackFactory<T> {
 		stack = new Stack_ArrayList<>();
 	}
 	
-	public IStack getInstance() {
+	public IStack<T> getInstance() {
 		return stack;
 	}
 

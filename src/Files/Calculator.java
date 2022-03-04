@@ -34,10 +34,15 @@ public class Calculator {
 
 		expression = expression.trim();
 		char[] values = expression.toCharArray();
-
-		Stack_ArrayList<String> stack = new Stack_ArrayList<>();
-		ArrayList<String> quote = new ArrayList();
 		String validOperators = "^*/+-()";
+		
+		StackFactory<String> stackFactory = new StackFactory<>();
+		ListFactory<String> listFactory = new ListFactory<>();
+		
+		
+		IStack<String> stack = stackFactory.getInstance();
+		IList<String> list = listFactory.getInstance();
+				
 
 		for (int i = 0; i < expression.length(); i++) {
 
@@ -48,7 +53,7 @@ public class Calculator {
 
 			// Agregar digito a stack
 			if (parseDigit(character) != null)
-				quote.add(character);
+				list.addLast(character);
 
 			//operadores
 			else {
@@ -67,7 +72,7 @@ public class Calculator {
 
 					while (!stack.isEmpty())
 						if (!stack.peek().equals("("))
-							quote.add(stack.pull());
+							list.addLast(stack.pull());
 						else {
 							stack.pull();
 							break;
@@ -77,7 +82,7 @@ public class Calculator {
 				// verificar si el top operator es mayor
 				else if (parseDigit(stack.peek()) == null && !stack.isEmpty()
 						&& getOperatorPrecedence(stack.peek()) > getOperatorPrecedence(character)) {
-					quote.add(stack.pull());
+					list.addLast(stack.pull());
 					stack.push(character);
 				}
 
@@ -88,10 +93,10 @@ public class Calculator {
 
 		// anadir operadores restantes
 		while (!stack.isEmpty()) {
-			quote.add(stack.pull());
+			list.addLast(stack.pull());
 		}
 
-		return String.join(" ", quote);
+		return list.asString();
 	}
 
 	/**
