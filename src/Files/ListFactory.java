@@ -5,7 +5,7 @@ public class ListFactory<T> {
 	private IList<T> simpleList;
 	
 	public ListFactory() {
-		simpleList = new SimpleList<T>();
+		simpleList = new SingleLinkedList<T>();
 	}
 	
 	public IList<T> getInstance() {

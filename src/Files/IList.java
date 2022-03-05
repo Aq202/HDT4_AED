@@ -2,11 +2,21 @@ package Files;
 
 public interface IList<T> {
 	
-	void addFirst(T value);
-	void addLast(T value);
-	T getFirst();
-	T getLast();
-	boolean isEmpty();
-	String asString();
+	void InsertAtStart(T value);
 
+    void InsertAtEnd(T value);
+
+    void Insert(T value, int index);
+
+    T Delete(int index);
+
+    T DeleteAtStart();
+
+    T DeleteAtEnd();
+
+    T Get(int index);
+
+    boolean IsEmpty();
+    
+    int Count();
 }

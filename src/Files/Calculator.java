@@ -35,12 +35,12 @@ public class Calculator {
 		char[] values = expression.toCharArray();
 		String validOperators = "^*/+-()";
 		
-		StackFactory<String> stackFactory = new StackFactory<>();
+		StackFactory<String> stackFactory = new StackFactory<>(3);
 		ListFactory<String> listFactory = new ListFactory<>();
 		
 		
 		IStack<String> stack = stackFactory.getInstance();
-		IList<String> list = listFactory.getInstance();
+		String postfix = "";
 				
 
 		for (int i = 0; i < expression.length(); i++) {
@@ -52,7 +52,7 @@ public class Calculator {
 
 			// Agregar digito a stack
 			if (parseDigit(character) != null)
-				list.addLast(character);
+				postfix += character;
 
 			//operadores
 			else {
@@ -71,7 +71,7 @@ public class Calculator {
 
 					while (!stack.isEmpty())
 						if (!stack.peek().equals("("))
-							list.addLast(stack.pull());
+							postfix += stack.pull();
 						else {
 							stack.pull();
 							break;
@@ -81,7 +81,7 @@ public class Calculator {
 				// verificar si el top operator es mayor
 				else if (parseDigit(stack.peek()) == null && !stack.isEmpty()
 						&& getOperatorPrecedence(stack.peek()) > getOperatorPrecedence(character)) {
-					list.addLast(stack.pull());
+					postfix += stack.pull();
 					stack.push(character);
 				}
 
@@ -92,10 +92,10 @@ public class Calculator {
 
 		// anadir operadores restantes
 		while (!stack.isEmpty()) {
-			list.addLast(stack.pull());
+			postfix += stack.pull();
 		}
 
-		return list.asString().replace("", " ").trim();
+		return postfix.replace("", " ").trim();
 	}
 	
 	/**

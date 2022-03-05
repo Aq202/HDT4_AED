@@ -1,31 +1,36 @@
 package Files;
 
 public class Node<T> {
-	
-	private Node pointer;
 	private T value;
+	private Node<T> next;
 	
 	public Node(T value) {
-		this.value = value;
+		this.setValue(value);
 	}
-	
-	public Node(T value, Node<T> pointer) {
-		this.value = value;
-		this.pointer = pointer;
-	}
-	
-	public Node getPointer() {
-		return pointer;
-	}
-	
+	/**
+	 * @return the value
+	 */
 	public T getValue() {
 		return value;
 	}
-	
-	public void setPointer(Node<T> pointer) {
-		this.pointer = pointer;
+	/**
+	 * @param value the value to set
+	 */
+	public void setValue(T value) {
+		this.value = value;
+	}
+	/**
+	 * @return the next
+	 */
+	public Node<T> getNext() {
+		return next;
+	}
+	/**
+	 * @param next the next to set
+	 */
+	public void setNext(Node<T> next) {
+		this.next = next;
 	}
 	
 	
-
 }
