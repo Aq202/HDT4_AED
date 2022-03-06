@@ -19,8 +19,8 @@ class CalculatorTests {
 		
 		
 		try {
-			assertEquals("1 2 9 * +",calculator.infixToPostfixConverter("1+2*9"));
-			assertEquals("1 2 + 9 *",calculator.infixToPostfixConverter("(1+2)*9"));
+			assertEquals("1 2 9 * +",calculator.infixToPostfixConverter("1+2*9",1));
+			assertEquals("1 2 + 9 *",calculator.infixToPostfixConverter("(1+2)*9",1));
 		
 		} catch (IllegalAccessException e) {
 			fail(e);
@@ -35,8 +35,8 @@ class CalculatorTests {
 		
 		
 		try {
-			assertEquals(27,calculator.evaluateInfix("(1+2)*9 "));
-			assertEquals(30,calculator.evaluateInfix("(1+2+3)*4+6"));
+			assertEquals(27,calculator.evaluateInfix("(1+2)*9 ",1));
+			assertEquals(30,calculator.evaluateInfix("(1+2+3)*4+6",1));
 		
 		} catch (IllegalAccessException e) {
 			fail(e);

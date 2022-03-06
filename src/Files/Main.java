@@ -38,10 +38,18 @@ public class Main {
 		System.out.println("Bienvenido a la calculadora de Infix a Posfix");
 		while(!end) {
 			String menu = """
+					Seleccione la implementacion que desea utilizar:
+					1. ArrayList
+					2. Vectores
+					3. Lista simple
+					4. Lista doble
+					""";
+			int implementation = getValidInt(scan, menu, false, 1,2,3,4);
+			menu = """
 					1. Iniciar ejecucion de archivo data.txt
 					2. Salir
 					""";
-			int option = getValidInt(scan, menu, false, 1, 2, 3, 4);
+			int option = getValidInt(scan, menu, false, 1, 2);
 			
 			switch(option) {
 			case 1:
@@ -62,7 +70,7 @@ public class Main {
 				for (String row : fileContent) {
 					try {
 						System.out.println("Linea numero: "+lineCount);
-						String posfixExpression = calc.infixToPostfixConverter(row);
+						String posfixExpression = calc.infixToPostfixConverter(row, implementation);
 						System.out.println("Operacion en formato infix: " + row);
 						System.out.println("Operacion en formato posfix: " + posfixExpression);
 						System.out.println("Resultado: " + calc.evaluatePostfix(posfixExpression) + "\n");

@@ -26,7 +26,7 @@ public class Calculator {
 	 * @return String. Expresion en formato postfix
 	 * @throws IllegalAccessException
 	 */
-	public String infixToPostfixConverter(String expression) throws IllegalAccessException {
+	public String infixToPostfixConverter(String expression, int implementation) throws IllegalAccessException {
 
 		if (expression == null)
 			throw new IllegalAccessException("La expresion infix no es valida.");
@@ -35,9 +35,8 @@ public class Calculator {
 		char[] values = expression.toCharArray();
 		String validOperators = "^*/+-()";
 		
-		StackFactory<String> stackFactory = new StackFactory<>(3);
-		ListFactory<String> listFactory = new ListFactory<>();
-		
+		StackFactory<String> stackFactory = new StackFactory<>(implementation);
+				
 		
 		IStack<String> stack = stackFactory.getInstance();
 		String postfix = "";
@@ -179,9 +178,9 @@ public class Calculator {
 	 * @return Int.
 	 * @throws IllegalAccessException 
 	 */
-	public int evaluateInfix(String expression) throws IllegalAccessException,ArithmeticException {
+	public int evaluateInfix(String expression, int implementation) throws IllegalAccessException,ArithmeticException {
 		
-		String postfix = infixToPostfixConverter(expression);
+		String postfix = infixToPostfixConverter(expression, implementation);
 		return evaluatePostfix(postfix);
 	}
 

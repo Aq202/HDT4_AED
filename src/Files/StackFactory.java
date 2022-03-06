@@ -10,10 +10,13 @@ public class StackFactory<T> {
 		if (implementation == 1) { //ArrayList
 			stack = new Stack_ArrayList<>();
 		}
-		else if (implementation == 2) { //Lista simplemente enlazada
+		else if(implementation == 2) {
+			stack = new Stack_Vector<>();
+		}
+		else if (implementation == 3) { //Lista simplemente enlazada
 			stack = new Stack_SingleLinkedList<>();
 		}
-		else if (implementation == 3) { //Lista doblemente enlazada
+		else if (implementation == 4) { //Lista doblemente enlazada
 			stack = new Stack_DoubleLinkedList<>();
 		}
 		
