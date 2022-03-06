@@ -38,17 +38,15 @@ public class Main {
 		System.out.println("Bienvenido a la calculadora de Infix a Posfix");
 		while(!end) {
 			String menu = """
-					Seleccione la implementacion que desea utilizar:
+					\nSeleccione la implementacion que desea utilizar:
 					1. ArrayList
 					2. Vectores
 					3. Lista simple
-					4. Lista doble
-					""";
+					4. Lista doble""";
 			int implementation = getValidInt(scan, menu, false, 1,2,3,4);
 			menu = """
-					1. Iniciar ejecucion de archivo data.txt
-					2. Salir
-					""";
+					\n1. Iniciar ejecucion de archivo data.txt
+					2. Salir""";
 			int option = getValidInt(scan, menu, false, 1, 2);
 			
 			switch(option) {
@@ -60,21 +58,21 @@ public class Main {
 						fileContent = FileController.readFile();
 						repeat = false;
 					} catch (IOException e) {
-						System.out.println("Archivo no encontrado.\nPor favor, asegurese de que el archivo data.txt sea valido y se encuentre en la carpeta donde se encuentra el programa.");
+						System.out.println("\nArchivo no encontrado.\nPor favor, asegurese de que el archivo data.txt sea valido y se encuentre en la carpeta donde se encuentra el programa.");
 						System.out.println("Presione enter para volver a buscar el archivo.");
 						scan.nextLine();
 					}
 				}
-				System.out.println("Archivo encontrado");
+				System.out.println("\nArchivo encontrado");
 				int lineCount = 1;
 				for (String row : fileContent) {
 					try {
 						System.out.println("Linea numero: "+lineCount);
-						String posfixExpression = calc.infixToPostfixConverter(row, implementation);
 						System.out.println("Operacion en formato infix: " + row);
+						String posfixExpression = calc.infixToPostfixConverter(row, implementation);
 						System.out.println("Operacion en formato posfix: " + posfixExpression);
 						System.out.println("Resultado: " + calc.evaluatePostfix(posfixExpression) + "\n");
-					}catch(IllegalAccessException e) {
+					}catch(Exception e) {
 						System.out.println("La expresion en la linea "+ lineCount + " no es valida.");
 					}
 					lineCount++;

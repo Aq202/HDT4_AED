@@ -110,12 +110,12 @@ public class Calculator {
 	 * @param expresion String. Expresion en formato postfix. 
 	 * @return int. Resultado de la operacion.
 	 */
-	public int evaluatePostfix(String expresion) throws ArithmeticException {
+	public double evaluatePostfix(String expresion) throws ArithmeticException {
 
 		String[] values = expresion.split(" ");
 		Stack_ArrayList<Integer> stack = new Stack_ArrayList<>();
 		// Stack_Kiesling<Integer> stack = new Stack_Kiesling<Integer>();
-		int result = 0;
+		double result = 0;
 
 		for (String value : values) {
 
@@ -157,13 +157,13 @@ public class Calculator {
 						result = operatorA * operatorB;
 						break;
 					case "/":
-						result = operatorA / operatorB;
+						result = (double)operatorA / (double)operatorB;
 						break;
 
 					}
 
 					// add result
-					stack.push(result);
+					stack.push((int)result);
 
 				}
 			}
@@ -178,7 +178,7 @@ public class Calculator {
 	 * @return Int.
 	 * @throws IllegalAccessException 
 	 */
-	public int evaluateInfix(String expression, int implementation) throws IllegalAccessException,ArithmeticException {
+	public double evaluateInfix(String expression, int implementation) throws IllegalAccessException,ArithmeticException {
 		
 		String postfix = infixToPostfixConverter(expression, implementation);
 		return evaluatePostfix(postfix);

@@ -29,34 +29,26 @@ public class Stack_Vector<T> implements IStack {
 	
 	@Override
 	public void push(Object value) {
-		int lastBusy = indexLastElement();
-		int indexNew = 0;
-		if(lastBusy == arreglo.length-1) {
-			indexNew = arreglo.length;
-			extendArray();
-		}else
-			indexNew = lastBusy+1;
-		arreglo[indexNew] = value;
+		if(!isEmpty()) {
+			if(indexLastElement() == arreglo.length-1)
+				extendArray();
+			System.arraycopy(arreglo,0,arreglo,1,arreglo.length-1);
+		}
+		arreglo[0] = value;
 	}
 
 	@Override
 	public Object pull() {
-		try {
-			Object temp = arreglo[indexLastElement()];
-			arreglo[indexLastElement()] = null;
-			return temp;
-		}catch(Exception e) {
-			return null;
-		}
+		Object temp = arreglo[0];
+		if(indexLastElement()==arreglo.length-1)
+			extendArray();
+		System.arraycopy(arreglo, 1, arreglo, 0, arreglo.length-1);
+		return temp;
 	}
 
 	@Override
-	public Object peek() {
-		try { 
-			return arreglo[indexLastElement()];
-		}catch(Exception e){
-			return arreglo[0];
-		}
+	public Object peek() { 
+		return arreglo[0];
 	}
 
 	@Override
