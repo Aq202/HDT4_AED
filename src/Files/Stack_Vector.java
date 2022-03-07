@@ -1,19 +1,17 @@
 package Files;
 
-import java.util.ArrayList;
-
 /**
  * Clase Stack_Vector. Permite crear y manipular un stack de tipo Vector.
  * @author Erick Guerra, Pablo Zamora, Diego Morales
  * @version 06/03/2022
  * @param <T>
  */
-public class Stack_Vector<T> implements IStack {
+public class Stack_Vector<T> implements IStack<T> {
 
-	private Object[] arreglo;
+	private T[] arreglo;
 	
 	public Stack_Vector() {
-		arreglo = new Object[2];
+		arreglo = (T[]) new Object[2];
 	}
 	
 	private int indexLastElement() {
@@ -28,13 +26,13 @@ public class Stack_Vector<T> implements IStack {
 	}
 	
 	private void extendArray() {
-		Object[] temp = new Object[arreglo.length+5];
+		T[] temp = (T[]) new Object[arreglo.length+5];
 		System.arraycopy(arreglo, 0, temp, 0, arreglo.length);
 		arreglo = temp;
 	}
 	
 	@Override
-	public void push(Object value) {
+	public void push(T value) {
 		if(!isEmpty()) {
 			if(indexLastElement() == arreglo.length-1)
 				extendArray();
@@ -44,8 +42,8 @@ public class Stack_Vector<T> implements IStack {
 	}
 
 	@Override
-	public Object pull() {
-		Object temp = arreglo[0];
+	public T pull() {
+		T temp = arreglo[0];
 		if(indexLastElement()==arreglo.length-1)
 			extendArray();
 		System.arraycopy(arreglo, 1, arreglo, 0, arreglo.length-1);
@@ -53,7 +51,7 @@ public class Stack_Vector<T> implements IStack {
 	}
 
 	@Override
-	public Object peek() { 
+	public T peek() { 
 		return arreglo[0];
 	}
 

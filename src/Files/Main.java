@@ -7,8 +7,6 @@ package Files;
  * Diego Andres Morales Aquino - 21762
  * Pablo Andres Zamora Vasquez - 21780
  */
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -95,11 +93,11 @@ public class Main {
 				int lineCount = 1;
 				for (String row : fileContent) { //Bucle para evaluar cada expresion del archivo
 					try {
-						System.out.println("Linea numero: "+lineCount);
+						System.out.println("\nLinea numero: "+lineCount);
 						System.out.println("Operacion en formato infix: " + row);
 						String posfixExpression = calc.infixToPostfixConverter(row, implementation); //Se convierte la expresion a postfix
 						System.out.println("Operacion en formato posfix: " + posfixExpression);
-						System.out.println("Resultado: " + calc.evaluatePostfix(posfixExpression) + "\n"); //Se evalua la expresion
+						System.out.println("Resultado: " + calc.evaluatePostfix(posfixExpression)); //Se evalua la expresion
 					}catch(Exception e) {
 						System.out.println("La expresion en la linea "+ lineCount + " no es valida.");
 					}

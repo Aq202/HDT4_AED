@@ -117,7 +117,6 @@ public class Calculator {
 
 		String[] values = expresion.split(" ");
 		Stack_ArrayList<Integer> stack = new Stack_ArrayList<>();
-		// Stack_Kiesling<Integer> stack = new Stack_Kiesling<Integer>();
 		double result = 0;
 
 		for (String value : values) {
@@ -161,6 +160,8 @@ public class Calculator {
 						break;
 					case "/":
 						result = (double)operatorA / (double)operatorB;
+						if(Double.isInfinite(result))
+							throw new ArithmeticException("Division entre 0");
 						break;
 
 					}
