@@ -1,7 +1,5 @@
 package Files;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -67,11 +65,11 @@ public class Main {
 				int lineCount = 1;
 				for (String row : fileContent) {
 					try {
-						System.out.println("Linea numero: "+lineCount);
+						System.out.println("\nLinea numero: "+lineCount);
 						System.out.println("Operacion en formato infix: " + row);
 						String posfixExpression = calc.infixToPostfixConverter(row, implementation);
 						System.out.println("Operacion en formato posfix: " + posfixExpression);
-						System.out.println("Resultado: " + calc.evaluatePostfix(posfixExpression) + "\n");
+						System.out.println("Resultado: " + calc.evaluatePostfix(posfixExpression));
 					}catch(Exception e) {
 						System.out.println("La expresion en la linea "+ lineCount + " no es valida.");
 					}

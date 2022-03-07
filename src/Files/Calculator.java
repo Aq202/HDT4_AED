@@ -158,6 +158,8 @@ public class Calculator {
 						break;
 					case "/":
 						result = (double)operatorA / (double)operatorB;
+						if(Double.isInfinite(result))
+							throw new ArithmeticException("Division entre 0");
 						break;
 
 					}
