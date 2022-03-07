@@ -1,17 +1,20 @@
 package Files;
 
-
+/**
+ * Clase Calculadora. Posee los metodos necesarios para convertir una expresion infix a postfix y evaluarla.
+ * @author Diego Morales, Erick Guerra, Pablo Zamora
+ * @version 06/03/2022
+ */
 public class Calculator {
 
-	private static Calculator instance = null;
+	private static Calculator instance = null; //Determina si ya se ha creado una instancia de la clase
 
 	private Calculator() {
 
 	}
 
 	/**
-	 * Provee la instancia unica del objeto Calculator
-	 * 
+	 * Metodo getInstance. Provee la instancia unica del objeto Calculator (Singleton).
 	 * @return Calculator.
 	 */
 	public static Calculator getInstance() {
@@ -21,7 +24,7 @@ public class Calculator {
 	}
 
 	/**
-	 * Se encarga de convertir una expresion en formato infix a formato postfix
+	 * Metodo infixToPostFixConverter. Se encarga de convertir una expresion en formato infix a formato postfix.
 	 * @param expression Formato infix
 	 * @return String. Expresion en formato postfix
 	 * @throws IllegalAccessException
@@ -32,17 +35,17 @@ public class Calculator {
 			throw new IllegalAccessException("La expresion infix no es valida.");
 
 		expression = expression.trim();
-		char[] values = expression.toCharArray();
+		char[] values = expression.toCharArray(); //Arreglo de caracteres
 		String validOperators = "^*/+-()";
 		
-		StackFactory<String> stackFactory = new StackFactory<>(implementation);
+		StackFactory<String> stackFactory = new StackFactory<>(implementation); //Se determina el tipo de pila a instanciar
 				
 		
-		IStack<String> stack = stackFactory.getInstance();
-		String postfix = "";
+		IStack<String> stack = stackFactory.getInstance(); //Se obtiene el objeto pila solicitado.
+		String postfix = ""; //String donde se almacena la expresion en postfix
 				
 
-		for (int i = 0; i < expression.length(); i++) {
+		for (int i = 0; i < expression.length(); i++) {//Por cada caracter en la expresion
 
 			String character = String.valueOf(values[i]).trim();
 			
@@ -98,7 +101,7 @@ public class Calculator {
 	}
 	
 	/**
-	 * Metodo que se encarga de efectuar la operacion especificada en una expresion
+	 * Metodo evaluatePostfix. Se encarga de efectuar la operacion especificada en una expresion
 	 * postfix.
 	 * 
 	 * Pre: Los elementos de la expresion deben de estar separados por un espacio en blanco. 
@@ -173,7 +176,7 @@ public class Calculator {
 	}
 	
 	/**
-	 * Se encarga de realizar la operacion especificada en formato infix.
+	 * Metodo evaluateInfix. Se encarga de realizar la operacion especificada en formato infix.
 	 * @param expression Infix.
 	 * @return Int.
 	 * @throws IllegalAccessException 
@@ -185,7 +188,7 @@ public class Calculator {
 	}
 
 	/**
-	 * Metodo que se encarga de convertir un String a Integer.
+	 * Metodo parseDigit. Se encarga de convertir un String a Integer.
 	 * 
 	 * @param value String.
 	 * @return Integer. Si el valor no es un int retorna null.
@@ -200,7 +203,7 @@ public class Calculator {
 	}
 
 	/**
-	 * Retorna un valor relativo al orden de las operaciones
+	 * Metodo getOperatorPrecedence. Retorna un valor relativo al orden de las operaciones
 	 * @param op Signo de la operacion.
 	 * @return Int.
 	 */

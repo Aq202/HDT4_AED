@@ -1,10 +1,16 @@
 package Files;
 
+/**
+ * Clase SingleLinkedList. Posee los metodos necesarios para crear y manipular una lista simplemente enlazada.
+ * @author Pablo Zamora, Erick Guerra, Diego Morales
+ * @version 06/03/2022
+ * @param <T> Tipo de dato a manejar
+ */
 public class SingleLinkedList<T> implements IList<T> {
 
-	private int count;
-    private Node<T> start;
-    private Node<T> end;
+	private int count; //Cuenta de los nodos en la lista
+    private Node<T> start; //Nodo inicial
+    private Node<T> end; //Nodo final
 
 	@Override
 	public void InsertAtStart(T value) {
@@ -44,35 +50,35 @@ public class SingleLinkedList<T> implements IList<T> {
 	@Override
 	public void Insert(T value, int index){
 		
-		if (IsEmpty()) //if the list is empty then insert at start
+		if (IsEmpty()) //Si la lista esta vacia, el nodo se inserta al inicio
         {
             InsertAtStart(value);
         }
         else 
         {
-            if (index >= Count()) //if the index is equal or greater than count then insert at end
+            if (index >= Count()) //Si el indice es mayor o igual a la cuenta, el nodo se inserta al final
             {
                 InsertAtEnd(value);
             } 
-            else if (index == 0) //If the index to insert is 0 and the list is not empty
+            else if (index == 0) //Si el indice es igual a 0 y la lista no esta vacia
             {
                 InsertAtStart(value);
             }
-            else if ((index > 0) && (index < Count())) //Index between 1 (second element) and Count() - 1 previous the last one
+            else if ((index > 0) && (index < Count())) //Si el indice esta entre uno y cuenta-1
             {
                 Node<T> newNode = new Node<T>(value);
                 Node<T> pretemp = start;
                 Node<T> temp = start.getNext();
                 int i = 1;
 
-                //Search the position where the node will be inserted
+                //Buscar la posicion en la que se insertara el nodo
                 while ((temp != null) && (i < index)) {
                     pretemp = temp;
                     temp = temp.getNext();
                     i++;
                 }
 
-                //doing the insertion
+                //Se inserta el nodo
                 newNode.setNext(temp);
                 pretemp.setNext(newNode);
                 count++;
@@ -97,7 +103,7 @@ public class SingleLinkedList<T> implements IList<T> {
             Node<T> temp = start.getNext();
             int i = 1;
 
-            //Search the position where the node will be inserted
+            //Buscar la posicion del nodo a eliminar
             while ((temp != null) && (i < (Count() - 1)))
             {
                 pretemp = temp;
@@ -105,10 +111,10 @@ public class SingleLinkedList<T> implements IList<T> {
                 i++;
             }
 
-            //Delete the node
+            //Eliminar el nodo
             pretemp.setNext(temp.getNext());
             count--;
-            return temp.getValue();
+            return temp.getValue(); //Se devuelve el valor del nodo eliminado
         }
         else
         {
@@ -135,7 +141,7 @@ public class SingleLinkedList<T> implements IList<T> {
 		if (!IsEmpty()) 
         {
 
-            if (Count() == 1) //Only one node then delete
+            if (Count() == 1) //Si solo hay un nodo en la lista
             {
                 Node<T> temp = start;
                 start = null;
@@ -148,14 +154,14 @@ public class SingleLinkedList<T> implements IList<T> {
                 Node<T> pretemp = start;
                 Node<T> temp = start.getNext();
 
-                //Search the position where the node will be inserted
+                //Buscar la posicion del nodo a eliminar
                 while (temp != null)
                 {
                     pretemp = temp;
                     temp = temp.getNext();
                 }
 
-                //Delete the node
+                //Eliminar el nodo
                 end = pretemp;
                 end.setNext(null);
                 count--;

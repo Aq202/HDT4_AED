@@ -2,6 +2,12 @@ package Files;
 
 import java.util.ArrayList;
 
+/**
+ * Clase Stack_Vector. Permite crear y manipular un stack de tipo Vector.
+ * @author Erick Guerra, Pablo Zamora, Diego Morales
+ * @version 06/03/2022
+ * @param <T>
+ */
 public class Stack_Vector<T> implements IStack {
 
 	private Object[] arreglo;

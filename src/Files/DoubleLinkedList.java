@@ -1,11 +1,20 @@
 package Files;
 
+/**
+ * Clase DoubleLinkedList. Posee los metodos necesarios para crear y manipular una lista doblemente enlazada.
+ * @author Pablo Zamora, Erick Guerra, Diego Morales
+ * @version 06/03/2022
+ * @param <T> Tipo de dato a manejar
+ */
 public class DoubleLinkedList<T> implements IList<T> {
 
-	private DoubleNode<T> start;
-	private DoubleNode<T> end;
-	private int count;
+	private DoubleNode<T> start; //Nodo inicial
+	private DoubleNode<T> end; //Nodo final
+	private int count; //Cuenta de nodos
 	
+	/**
+	 * Metodo constructor. Se inician los atributos en null o 0.
+	 */
 	public DoubleLinkedList() {
 		start = null;
 		end = null;
@@ -61,33 +70,33 @@ public class DoubleLinkedList<T> implements IList<T> {
 	@Override
 	public void Insert(T value, int index) {
 		
-		if (IsEmpty()) //if the list is empty then insert at start
+		if (IsEmpty()) //Si la lista esta vacia, el nodo se inserta al inicio
         {
             InsertAtStart(value);
         }
         else 
         {
-            if (index >= Count()) //if the index is equal or greater than count then insert at end
+            if (index >= Count()) //Si el indice es mayor o igual a la cuenta, el nodo se inserta al final
             {
                 InsertAtEnd(value);
             } 
-            else if (index == 0) //If the index to insert is 0 and the list is not empty
+            else if (index == 0) //Si el indice es igual a 0 y la lista no esta vacia
             {
                 InsertAtStart(value);
             }
-            else if ((index > 0) && (index < Count())) //Index between 1 (second element) and Count() - 1 previous the last one
+            else if ((index > 0) && (index < Count())) //Si el indice esta entre uno y cuenta-1
             {
                 DoubleNode<T> newNode = new DoubleNode<T>(value);
                 DoubleNode<T> temp = start;
                 int i = 0;
 
-                //Search the position where the node will be inserted
+              //Buscar la posicion en la que se insertara el nodo
                 while ((temp != null) && (i < index)) {
                     temp = temp.getNext();
                     i++;
                 }
 
-                //doing the insertion
+              //Se inserta el nodo
                 newNode.setNext(temp);
                 newNode.setPrevious(temp.getPrevious());
                 temp.setPrevious(newNode);

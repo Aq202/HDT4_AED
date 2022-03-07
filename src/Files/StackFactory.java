@@ -1,9 +1,18 @@
 package Files;
-
+/**
+ * Clase StackFactory. Permite instanciar la implementacion adecuada del ADT Stack.
+ * @author Pablo Zamora, Erick Guerra, Diego Morales
+ * @version 06/03/2022
+ * @param <T>
+ */
 public class StackFactory<T> {
 	
-	private IStack<T> stack;
+	private IStack<T> stack; //Tipo de stack a instanciar
 	
+	/**
+	 * Metodo constructor.
+	 * @param implementation Determina la clase de stack a instanciar.
+	 */
 	public StackFactory(int implementation){
 		
 		//modificar la implementacion a utilizar
@@ -22,6 +31,10 @@ public class StackFactory<T> {
 		
 	}
 	
+	/**
+	 * Metodo getInstance. Devuelve la instancia correspondiente de stack.
+	 * @return IStack<T>
+	 */
 	public IStack<T> getInstance() {
 		return stack;
 	}

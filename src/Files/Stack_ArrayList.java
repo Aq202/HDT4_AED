@@ -2,9 +2,15 @@ package Files;
 
 import java.util.ArrayList;
 
+/**
+ * Clase Stack_ArrayList. Permite crear y manipular un stack de tipo ArrayList.
+ * @author Erick Guerra, Pablo Zamora, Diego Morales
+ * @version 06/03/2022
+ * @param <T> Tipo de dato a manipular
+ */
 public class Stack_ArrayList<T> implements IStack<T>{
 
-	private ArrayList<T> elements;
+	private ArrayList<T> elements; //Arraylist que almacenara los valores
 
 	public Stack_ArrayList() {
 		elements = new ArrayList<T>();

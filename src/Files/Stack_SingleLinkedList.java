@@ -1,8 +1,14 @@
 package Files;
 
+/**
+ * Clase Stack_DoubleLinkedList. Permite crear y manipular un stack que implementa una lista simplemente enlazada.
+ * @author Pablo Zamora, Erick Guerra, Diego Morales
+ * @version 06/03/2022
+ * @param <T> Tipo de dato a manipular
+ */
 public class Stack_SingleLinkedList<T> implements IStack<T> {
 
-	private SingleLinkedList<T> listaInterna;
+	private SingleLinkedList<T> listaInterna; //Lista simplemente enlazada que almacenara los valores
 	
 	public Stack_SingleLinkedList()
 	{
